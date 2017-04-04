@@ -10,7 +10,7 @@ namespace StyleBuilderAPI.Controllers
         private readonly IColorPalettesRepository colorPalettes;
 
         // TODO
-        public ColorPalettesController() : this(new ColorPalettesRepository("DIRECTORY PLACEHOLDER")) { }
+        public ColorPalettesController() : this(new ColorPalettesRepository(@"..\Data\ColorPalettes")) { }
 
         public ColorPalettesController(IColorPalettesRepository colorPalettesRepository)
         {
@@ -25,7 +25,7 @@ namespace StyleBuilderAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/colorpalettes/{name:string}")]
+        [Route("api/colorpalettes/{name}")]
         public IHttpActionResult GetByName(string name)
         {
             return this.Ok(colorPalettes.Get(name));

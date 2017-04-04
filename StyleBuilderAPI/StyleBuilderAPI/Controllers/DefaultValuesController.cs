@@ -10,7 +10,7 @@ namespace StyleBuilderAPI.Controllers
         private readonly IDefaultValuesRepository defaultValues;
 
         // TODO
-        public DefaultValuesController() : this(new DefaultValuesRepository("DIRECTORY PLACEHOLDER")) { }
+        public DefaultValuesController() : this(new DefaultValuesRepository(@"..\Data\DefaultValues")) { }
 
         public DefaultValuesController(IDefaultValuesRepository defaultValuesRepository)
         {
@@ -18,14 +18,14 @@ namespace StyleBuilderAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/defaultvalues/{themeName:string}/{frontEnd:string}/{name:string}")]
+        [Route("api/defaultvalues/{themeName}/{frontEnd}/{name}")]
         public IHttpActionResult GetByName(string themeName, string frontEnd, string name)
         {
             return this.Ok(this.defaultValues.Get(themeName, frontEnd, name));
         }
 
         [HttpPost]
-        [Route("api/defaultvalues/{themeName:string}/{frontEnd:string}/{name:string}")]
+        [Route("api/defaultvalues/{themeName}/{frontEnd}/{name}")]
         public IHttpActionResult AddByName(string themeName, string frontEnd, string name, [FromBody]string JSONbody)
         {
             this.defaultValues.Add(themeName, frontEnd, name, JSONbody);

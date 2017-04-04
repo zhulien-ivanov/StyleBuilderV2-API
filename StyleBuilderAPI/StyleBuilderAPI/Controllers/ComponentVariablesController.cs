@@ -10,7 +10,7 @@ namespace StyleBuilderAPI.Controllers
         private readonly IComponentVariablesRepository componentVariables;
 
         // TODO
-        public ComponentVariablesController() : this(new ComponentVariablesRepository("DIRECTORY PLACEHOLDER")) { }
+        public ComponentVariablesController() : this(new ComponentVariablesRepository(@"..\Data\ComponentVariables")) { }
 
         public ComponentVariablesController(IComponentVariablesRepository componentVariablesRepository)
         {
@@ -18,7 +18,7 @@ namespace StyleBuilderAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/componentvariables/{frontEnd:string}/{name:string}")]
+        [Route("api/componentvariables/{frontEnd}/{name}")]
         public IHttpActionResult GetByName(string frontEnd, string name)
         {
             return this.Ok(this.componentVariables.Get(frontEnd, name));
