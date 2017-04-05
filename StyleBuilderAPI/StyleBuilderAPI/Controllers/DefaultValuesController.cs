@@ -1,16 +1,18 @@
-﻿using StyleBuilderAPI.Data.Contracts;
-using StyleBuilderAPI.Data.Repositories;
-
+﻿using System.IO;
+using System.Web;
 using System.Web.Http;
+
+using StyleBuilderAPI.Data.Contracts;
+using StyleBuilderAPI.Data.Repositories;
 
 namespace StyleBuilderAPI.Controllers
 {
     public class DefaultValuesController : ApiController
     {
         private readonly IDefaultValuesRepository defaultValues;
-
-        // TODO
-        public DefaultValuesController() : this(new DefaultValuesRepository(@"..\Data\DefaultValues")) { }
+        private static readonly string dataPath = Path.Combine(Directory.GetParent(HttpRuntime.AppDomainAppPath).Parent.FullName, @"Data\DefaultValues");
+        
+        public DefaultValuesController() : this(new DefaultValuesRepository(dataPath)) { }
 
         public DefaultValuesController(IDefaultValuesRepository defaultValuesRepository)
         {

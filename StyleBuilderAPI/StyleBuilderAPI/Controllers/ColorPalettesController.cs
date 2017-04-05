@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.IO;
+using System.Web;
+using System.Web.Http;
 
 using StyleBuilderAPI.Data.Contracts;
 using StyleBuilderAPI.Data.Repositories;
@@ -8,9 +10,9 @@ namespace StyleBuilderAPI.Controllers
     public class ColorPalettesController : ApiController
     {
         private readonly IColorPalettesRepository colorPalettes;
+        private static readonly string dataPath = Path.Combine(Directory.GetParent(HttpRuntime.AppDomainAppPath).Parent.FullName, @"Data\ColorPalettes");
 
-        // TODO
-        public ColorPalettesController() : this(new ColorPalettesRepository(@"..\Data\ColorPalettes")) { }
+        public ColorPalettesController() : this(new ColorPalettesRepository(dataPath)) { }
 
         public ColorPalettesController(IColorPalettesRepository colorPalettesRepository)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 using Newtonsoft.Json;
@@ -20,7 +19,7 @@ namespace StyleBuilderAPI.Data.Repositories
 
         public string Get(string colorPaletteName)
         {
-            var colorPalettePath = $"{this.colorPalettesDirectory}\\{colorPaletteName}.json";
+            var colorPalettePath = Path.Combine(this.colorPalettesDirectory, colorPaletteName + ".json");
 
             var colorPaletteJSON = File.ReadAllText(colorPalettePath);
 

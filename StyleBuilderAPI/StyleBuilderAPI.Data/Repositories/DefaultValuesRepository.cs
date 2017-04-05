@@ -15,14 +15,14 @@ namespace StyleBuilderAPI.Data.Repositories
 
         public void Add(string themeName, string frontEnd, string componentName, string defaultValuesJSON)
         {
-            var defaultsValuesPath = $"{this.defaultValuesDirectory}\\{themeName}\\{frontEnd}\\{componentName}.json";
+            var defaultsValuesPath = Path.Combine(this.defaultValuesDirectory, themeName, frontEnd, componentName + ".json");
 
             File.WriteAllText(defaultsValuesPath, defaultValuesJSON);
         }
 
         public string Get(string themeName, string frontEnd, string componentName)
         {
-            var defaultsValuesPath = $"{this.defaultValuesDirectory}\\{themeName}\\{frontEnd}\\{componentName}.json";
+            var defaultsValuesPath = Path.Combine(this.defaultValuesDirectory, themeName, frontEnd, componentName + ".json");
 
             var defaultValuesJSON = File.ReadAllText(defaultsValuesPath);
 

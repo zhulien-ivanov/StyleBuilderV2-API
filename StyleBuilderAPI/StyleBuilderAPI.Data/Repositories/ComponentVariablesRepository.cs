@@ -15,7 +15,7 @@ namespace StyleBuilderAPI.Data.Repositories
 
         public string Get(string frontEnd, string componentName)
         {
-            var componentFilePath = $"{this.componentVariablesDirectory}\\{frontEnd}\\{componentName}.json";
+            var componentFilePath = Path.Combine(this.componentVariablesDirectory, frontEnd, componentName + ".json");
 
             var componentVariablesJSON = File.ReadAllText(componentFilePath);
 
